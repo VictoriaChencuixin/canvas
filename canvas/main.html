@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        *{
+            margin: 0 auto;
+        }
+
+    </style>
+
+    <script src="Background.js"></script>
+    <script src="Hero.js"></script>
+    <script>
+
+        var canvas;
+
+         //2获取上下文（画笔）
+        var context;
+        var speed=3;
+
+        //矩形绘制
+        function  drawJX(){
+
+            //1获取画布
+            var canvas=document.getElementById("can");
+
+            //2获取上下文（画笔）
+            var context=canvas.getContext("2d");
+
+            //改变填充颜色
+//            context.fillStyle="red";
+               context.lineWidth="21";
+               context.strokeStyle="red";
+            //3 开始绘制(x,y,width,height)
+//            context.fillRect(110,50,100,50);
+              context.strokeRect(110,50,100,50);
+
+
+        }
+
+        //划线
+        function  drawLine(){
+            //1获取画布
+            var canvas=document.getElementById("can");
+
+            //2获取上下文（画笔）
+            var context=canvas.getContext("2d");
+
+            //设置线的开始位置
+            context.moveTo(100,50);
+
+            //设置线的结束位置
+            context.lineTo(150,100);
+            context.lineTo(250,150);
+            context.lineTo(250,10);
+
+            context.moveTo(100,250);
+
+            context.lineTo(200,250);
+            //开始绘制
+            context.stroke();
+
+
+        }
+
+
+
+
+        window.onload=function(){
+            //1获取画布
+            canvas=document.getElementById("can");
+
+            //2获取上下文（画笔）
+            context=canvas.getContext("2d");
+
+            var bg=new Background("mary",0,0);
+            var hero=new Hero("m1","m2",0,70);
+
+
+            setInterval(function(){
+                bg.show();
+                hero.show();
+            },30);
+
+
+//
+//
+//            var isdown=false;
+//
+//            var can=document.getElementById("can");
+//            can.onmousedown=function(e){
+//                isdown=true;
+//                context.moveTo(e.pageX, e.pageY);
+//            }
+//            can.onmousemove=function(e){
+//                if(isdown){
+//
+//                    context.lineTo(e.pageX, e.pageY);
+//                    context.stroke();
+//
+//                }
+//
+//            }
+//            can.onmouseout=function(e){
+//                isdown=false;
+//            }
+//            can.onmouseup=function(e){
+//                isdown=false;
+//            }
+
+
+        }
+
+
+        function drawCircle(){
+            var canvas=document.getElementById("can");
+           //2获取上下文（画笔）
+            var context=canvas.getContext("2d");
+            context.fillStyle="RED";
+            context.arc(100,100,50,0,Math.PI*2,false);
+            context.fill();
+
+        }
+
+        function drawImg(){
+            var canvas=document.getElementById("can");
+            //2获取上下文（画笔）
+            var context=canvas.getContext("2d");
+
+            var img=document.getElementById("mary");
+            context.drawImage(img,0,0);
+
+
+
+
+
+
+        }
+
+
+
+    </script>
+</head>
+<body>
+
+<canvas id="can" width="600" height="400" style="border:1px solid darkgray">
+
+</canvas>
+
+<input type="button" value="画矩形" onclick="drawJX()">
+<input type="button" value="画直线" onclick="drawLine()">
+<input type="button" value="画圆" onclick="drawCircle()">
+<input type="button" value="画图" onclick="drawImg()">
+<img src="mary.jpg" alt="" style=" display: none" id="mary">
+<img src="m1.png" alt="" style=" display: none;width: 15px;height: 20px"  id="m1">
+<img src="m2.png" alt="" style=" display: none;width: 15px;height: 20px"  id="m2">
+</body>
+</html>
